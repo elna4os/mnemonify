@@ -1,0 +1,3 @@
+fetch:
+  base_url: https://api.wanikani.com/v2/subjects
+  out_file: data/wanikani_subjects.json
