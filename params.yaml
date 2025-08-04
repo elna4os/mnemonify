@@ -1,0 +1,58 @@
+fetch:
+  base_url: https://api.wanikani.com/v2/subjects
+  out_file: data/wanikani_subjects.json
+
+prepare_prompts:
+  out_file: data/prompts.json
+
+training:
+  model_name: microsoft/phi-3-mini-4k-instruct
+  out_dir: output/phi3_mini_4k
+  seed: 42
+  val_frac: 0.1
+  train_bs: 8
+  eval_bs: 8
+  max_len: 512
+  gradient_accumulation_steps: 1
+  max_epochs: 1
+  use_gradient_checkpointing: true
+  optimizer: paged_adamw_32bit
+  lr: 1e-4
+  warmup_ratio: 0.01
+  logging_steps: 10
+  save_total_limit: 1
+  qlora_config:
+    r: 8
+    lora_alpha: 16
+    target_modules:
+      - q_proj
+      - v_proj
+      - k_proj
+      - o_proj
+      - gate_proj
+      - up_proj
+      - down_proj
+      - lm_head
+    dropout: 0.05
+
+predict_before_merge:
+  num_samples: 16
+  batch_size: 4
+  model_dir: output/phi3_mini_4k/checkpoint-983
+  data_path: data/prompts.json
+  output_path: output/predictions_before_merge.json
+  seed: 42
+  temperature: 0.7
+  top_p: 0.9
+  max_new_tokens: 64
+
+merge_unload:
+  model_dir: output/phi3_mini_4k/checkpoint-983
+  out_dir: output/phi3_mini_4k_merged
+
+predict_after_merge:
+  model_path: output/phi3_mini_4k_q4_0.gguf
+  output_path: output/predictions_after_merge.json
+  n_ctx: 0
+  n_gpu_layers: -1
+  n_threads: 8

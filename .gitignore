@@ -1,0 +1,7 @@
+*.pyc
+
+.env
+
+data/
+output/
+llama.cpp/
