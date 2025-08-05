@@ -1,3 +1,7 @@
+"""
+Fetch WaniKani subjects and save them to a JSON file.
+"""
+
 import json
 import os
 import time
@@ -8,6 +12,8 @@ import requests
 import yaml
 from dotenv import load_dotenv
 from loguru import logger
+
+__all__ = []
 
 
 def fetch_subjects(
@@ -42,7 +48,8 @@ if __name__ == "__main__":
             base_url=params["fetch"]["base_url"],
             headers=headers
         )
-        Path(params["fetch"]["out_file"]).parent.mkdir(parents=True, exist_ok=True)
+        Path(params["fetch"]["out_file"]).parent.mkdir(
+            parents=True, exist_ok=True)
         with open(params["fetch"]["out_file"], "w", encoding="utf-8") as f:
             json.dump(subjects_list, f, ensure_ascii=False)
         logger.info(f"Subjects saved to {params['fetch']['out_file']}")
