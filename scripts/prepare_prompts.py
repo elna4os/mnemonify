@@ -1,3 +1,6 @@
+"""This script prepares prompts from WaniKani subjects data
+"""
+
 import json
 from typing import Any, Dict, List
 
@@ -18,6 +21,17 @@ def prepare_prompts(
     instruction_template: str,
     input_template: str
 ) -> List[Dict[str, Any]]:
+    """Prepare prompts from WaniKani subjects data
+
+    Args:
+        data_path (str): Path to the JSON file containing WaniKani subjects data
+        instruction_template (str): Instruction template for the prompts
+        input_template (str): Input template for the prompts
+
+    Returns:
+        List[Dict[str, Any]]: List of prepared prompts
+    """
+
     with open(data_path, "r", encoding="utf-8") as file:
         data = json.load(file)
     # For faster search, we create a dictionary mapping subject IDs to subject data
@@ -27,10 +41,13 @@ def prepare_prompts(
         id2subject[subject["id"]] = subject
     prompts = []
     logger.info("Preparing prompts")
+    # Main loop
     for subject in tqdm(id2subject.values()):
+        # Process only Kanji subjects
         if subject["object"] == SubjectType.KANJI:
             readings = []
             for x in subject["data"]["readings"]:
+                # Convert onyomi readings to katakana
                 if x["type"] == KanjiReadingType.ONYOMI:
                     reading = jaconv.hira2kata(x["reading"])
                 else:
