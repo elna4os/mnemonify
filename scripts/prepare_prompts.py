@@ -52,11 +52,11 @@ def prepare_prompts(
                     reading = jaconv.hira2kata(x["reading"])
                 else:
                     reading = x["reading"]
-                readings.append(str((reading, x["type"])))
+                readings.append(str((reading, x["type"], "primary" if x["primary"] else "non primary")))
             input_data = {
                 "characters": subject["data"]["characters"],
                 "type": subject["object"],
-                "primary_meanings": ", ".join([x["meaning"] for x in subject["data"]["meanings"]]),
+                "meanings": ", ".join([str((x["meaning"], "primary" if x["primary"] else "non primary")) for x in subject["data"]["meanings"]]),
                 "auxiliary_meanings": ", ".join([x["meaning"] for x in subject["data"]["auxiliary_meanings"] if x["type"] != "blacklist"]),
                 "readings": ", ".join(readings),
                 "compound_subjects": ", ".join([
