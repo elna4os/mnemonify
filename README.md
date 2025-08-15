@@ -32,8 +32,6 @@
 
 <ins>To do</ins>:
 
-- Retrain model with the new prompts
-- Merge/unload -> convert to GGUF -> quantize to 4-bit
 - User request validation
 - Inference prompt generator (from KanjiAlive data)
 - Host model on Hugging Face Spaces (Streamlit + llama.cpp) and set up simple logging (Python Telegram Bot for ex.)
