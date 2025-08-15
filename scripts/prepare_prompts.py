@@ -32,8 +32,8 @@ def prepare_prompts(data_path: str) -> List[Dict[str, Any]]:
     logger.info("Preparing prompts")
     # Main loop
     for subject in tqdm(id2subject.values()):
-        # Process only kanji and vocabulary subjects
-        if subject["object"] == "kanji" or subject["object"] == "vocabulary":
+        # Process only kanji
+        if subject["object"] == "kanji":
             processed_sample = wk_to_train_sample(
                 wk_sample=subject,
                 wk_idx2data=id2subject

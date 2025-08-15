@@ -25,21 +25,21 @@ def wk_to_train_sample(
     """
 
     k2v = dict()
-    k2v["characters"] = wk_sample["data"]["characters"]
-    k2v["type"] = wk_sample["object"]
+    k2v["kanji"] = wk_sample["data"]["characters"]
     # Get meanings (including auxiliary)
-    k2v["meanings"] = []
-    for meaning in wk_sample["data"]["meanings"]:
-        k2v["meanings"].append(meaning["meaning"])
+    k2v["primary_meaning"] = wk_sample["data"]["meanings"][0]["meaning"]
+    k2v["other_meanings"] = []
+    for meaning in wk_sample["data"]["meanings"][1:]:
+        k2v["other_meanings"].append(meaning["meaning"])
     for meaning in wk_sample["data"]["auxiliary_meanings"]:
         if meaning["type"] != "blacklist":
-            k2v["meanings"].append(meaning["meaning"])
-    k2v["meanings"] = ", ".join(k2v["meanings"])
+            k2v["other_meanings"].append(meaning["meaning"])
+    k2v["other_meanings"] = ", ".join(k2v["other_meanings"])
     # Get compounding subjects
-    k2v["parts"] = []
+    k2v["radicals"] = []
     for part_id in wk_sample["data"]["component_subject_ids"]:
-        k2v["parts"].append(f'{wk_idx2data[part_id]["data"]["characters"]}/{wk_idx2data[part_id]["data"]["meanings"][0]["meaning"]}')
-    k2v["parts"] = ", ".join(k2v["parts"])
+        k2v["radicals"].append(str((wk_idx2data[part_id]["data"]["characters"], wk_idx2data[part_id]["data"]["meanings"][0]["meaning"])))
+    k2v["radicals"] = ", ".join(k2v["radicals"])
 
     res = {
         "instruction": INSTRUCTION_DEFAULT,

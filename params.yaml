@@ -12,7 +12,7 @@ training:
   val_frac: 0.1
   train_bs: 8
   eval_bs: 8
-  max_len: 512
+  max_len: 300
   gradient_accumulation_steps: 1
   max_epochs: 1
   use_gradient_checkpointing: true
@@ -38,7 +38,7 @@ training:
 predict_before_merge:
   num_samples: 16
   batch_size: 4
-  model_dir: output/phi3_mini_4k/checkpoint-983
+  model_dir: output/phi3_mini_4k/checkpoint-235
   data_path: data/prompts.json
   output_path: output/predictions_before_merge.json
   seed: 42
@@ -47,7 +47,7 @@ predict_before_merge:
   max_new_tokens: 64
 
 merge_unload:
-  model_dir: output/phi3_mini_4k/checkpoint-983
+  model_dir: output/phi3_mini_4k/checkpoint-235
   out_dir: output/phi3_mini_4k_merged
 
 predict_after_merge:

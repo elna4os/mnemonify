@@ -25,15 +25,13 @@
 
 <ins>Data sources and their usage</ins>:
 
-- Subjects from [WaniKani API](https://docs.api.wanikani.com/20170710/#introduction): kanji (2083), vocabulary (6650). Used only to fine-tune the model (as i understand, WaniKani's terms of service don't allow to publicly share data fetched from API).
+- Kanji (2083) from [WaniKani API](https://docs.api.wanikani.com/20170710/#introduction) are used only to fine-tune the model.
 - [KanjiAlive](https://github.com/kanjialive/kanji-data-media) offline data: radicals and kanji. Used to prepare prompts during inference stage.
 
 ---
 
 <ins>To do</ins>:
 
-- Retrain model with the new prompts
-- Merge/unload -> convert to GGUF -> quantize to 4-bit
 - User request validation
 - Inference prompt generator (from KanjiAlive data)
 - Host model on Hugging Face Spaces (Streamlit + llama.cpp) and set up simple logging (Python Telegram Bot for ex.)
