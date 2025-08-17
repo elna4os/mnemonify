@@ -25,6 +25,7 @@ dependencies = [
     "tensorboardx (>=2.6.4,<3.0.0)",
     "llama-cpp-python (>=0.3.15,<0.4.0)",
     "mistral-common (>=1.8.3,<2.0.0)",
+    "streamlit (>=1.48.1,<2.0.0)",
 ]
 
 

@@ -1,8 +1,15 @@
-### Generate kanji mnemonics with fine-tuned Phi-3-Mini-4K-Instruct
-
+---
+title: Kanji Mnemonic Generator
+emoji: 🈚
+colorFrom: indigo
+colorTo: blue
+sdk: streamlit
+sdk_version: 1.48.1
+app_file: app.py
+pinned: true
 ---
 
-<ins>Status</ins>: development
+### Generate kanji mnemonics with fine-tuned Phi-3-Mini-4K-Instruct
 
 ---
 
@@ -20,18 +27,18 @@
 - [Preparing](scripts/prepare_prompts.py) prompts for Phi-3-Mini-4K-Instruct fine-tuning
 - [Fine-tuning](scripts/train_phi3_mini_4k.py) Phi-3-Mini-4K-Instruct with QLoRA
 - [Merging/unloading](scripts/merge_unload.py) pretrained model
+- [Running](app.py) Streamlit app with fine-tuned model
 
 ---
 
 <ins>Data sources and their usage</ins>:
 
-- Kanji (2083) from [WaniKani API](https://docs.api.wanikani.com/20170710/#introduction) are used only to fine-tune the model.
-- [KanjiAlive](https://github.com/kanjialive/kanji-data-media) offline data: radicals and kanji. Used to prepare prompts during inference stage.
+- 2083 kanji from [WaniKani API](https://docs.api.wanikani.com/20170710/#introduction) has been used to fine-tune the model and to prepare prompts during inference stage.
+- [KanjiAlive](https://github.com/kanjialive/kanji-data-media) radicals and kanji are used to prepare prompts during inference stage in fallback mode.
+- [KRAD files](https://www.edrdg.org/krad/kradinf.html) are used to decompose kanji into radicals during inference stage in fallback mode.
+
+_Fallback mode_ - when the kanji is not found in WaniKani subjects, the app uses KanjiAlive and KRAD data to prepare prompts (if possible).
 
 ---
 
-<ins>To do</ins>:
-
-- User request validation
-- Inference prompt generator (from KanjiAlive data)
-- Host model on Hugging Face Spaces (Streamlit + llama.cpp) and set up simple logging (Python Telegram Bot for ex.)
+Model [card](https://huggingface.co/elna4os/mnemonify) on Hugging Face
