@@ -56,3 +56,21 @@ predict_after_merge:
   n_ctx: 0
   n_gpu_layers: -1
   n_threads: 8
+
+app:
+  model_repo: elna4os/mnemonify
+  model_filename: phi3_mini_4k_q4_0.gguf
+  local_dir: output
+  radicals_data_path: kanjialive_data/japanese-radicals.csv
+  kanji_data_path: kanjialive_data/ka_data.csv
+  wanikani_data_path: data/wanikani_subjects.json
+  krad_data_path: kradfiles/kradfile
+  krad2_data_path: kradfiles/kradfile2
+  n_ctx: 0
+  n_threads: 8
+  n_gpu_layers: -1
+  max_new_tokens: 96
+  mnemonic_max_sentences: 3
+  temperature: 0.3
+  top_p: 0.5
+  repeat_penalty: 1.3

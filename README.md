@@ -1,8 +1,15 @@
-### Generate kanji mnemonics with fine-tuned Phi-3-Mini-4K-Instruct
-
+---
+title: Mnemonify
+emoji: 🈶
+colorFrom: gray
+colorTo: yellow
+sdk: docker
+pinned: true
+license: mit
+short_description: Kanji Mnemonic Generator
 ---
 
-<ins>Status</ins>: development
+### Generate kanji mnemonics with fine-tuned Phi-3-Mini-4K-Instruct
 
 ---
 
@@ -20,18 +27,26 @@
 - [Preparing](scripts/prepare_prompts.py) prompts for Phi-3-Mini-4K-Instruct fine-tuning
 - [Fine-tuning](scripts/train_phi3_mini_4k.py) Phi-3-Mini-4K-Instruct with QLoRA
 - [Merging/unloading](scripts/merge_unload.py) pretrained model
+- [Running](app.py) Streamlit app with fine-tuned model
 
 ---
 
 <ins>Data sources and their usage</ins>:
 
-- Kanji (2083) from [WaniKani API](https://docs.api.wanikani.com/20170710/#introduction) are used only to fine-tune the model.
-- [KanjiAlive](https://github.com/kanjialive/kanji-data-media) offline data: radicals and kanji. Used to prepare prompts during inference stage.
+- 2083 kanji from [WaniKani API](https://docs.api.wanikani.com/20170710/#introduction) has been used to fine-tune the model and to prepare prompts during inference stage.
+- [KanjiAlive](https://github.com/kanjialive/kanji-data-media) radicals and kanji are used to prepare prompts during inference stage in fallback mode.
+- [KRAD files](https://www.edrdg.org/krad/kradinf.html) are used to decompose kanji into radicals during inference stage in fallback mode.
+
+_Fallback mode_ - when the kanji is not found in WaniKani subjects, the app uses KanjiAlive and KRAD data to prepare prompts (if possible).
+
+---
+
+- Model [card](https://huggingface.co/elna4os/mnemonify) on Hugging Face
+- Hugging Face Spaces [demo](https://huggingface.co/spaces/elna4os/mnemonify)
 
 ---
 
 <ins>To do</ins>:
 
-- User request validation
-- Inference prompt generator (from KanjiAlive data)
-- Host model on Hugging Face Spaces (Streamlit + llama.cpp) and set up simple logging (Python Telegram Bot for ex.)
+- Fix deployment to HF Spaces (llama-cpp-python build timeout)
+- Find a reliable and open-source way to decompose kanji into radicals (unfortunately, WaniKani license doesn't allow to publicly share their radicals data). KRAD decomposition is too atomic which apparently is not really good for mnemonics.

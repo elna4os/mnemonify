@@ -1,0 +1,12 @@
+--extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+huggingface-hub==0.34.4
+llama_cpp_python==0.3.2
+loguru==0.7.3
+pandas==2.3.1
+python-dotenv==1.1.1
+PyYAML==6.0.2
+requests==2.32.5
+streamlit==1.48.1
+torch==2.8.0
+tqdm==4.67.1
+transformers==4.55.0
