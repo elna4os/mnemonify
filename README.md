@@ -41,4 +41,12 @@ _Fallback mode_ - when the kanji is not found in WaniKani subjects, the app uses
 
 ---
 
-Model [card](https://huggingface.co/elna4os/mnemonify) on Hugging Face
+- Model [card](https://huggingface.co/elna4os/mnemonify) on Hugging Face
+- Hugging Face Spaces [demo](https://huggingface.co/spaces/elna4os/mnemonify)
+
+---
+
+<ins>To do</ins>:
+
+- Fix deployment to HF Spaces (llama-cpp-python build timeout)
+- Find a reliable and open-source way to decompose kanji into radicals (unfortunately, WaniKani license doesn't allow to publicly share their radicals data). KRAD decomposition is too atomic which apparently is not really good for mnemonics.
