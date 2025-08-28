@@ -1,6 +1,7 @@
 FROM python:3.11
 
 RUN apt-get update && apt-get install -y build-essential musl musl-dev
+RUN ln -s /usr/lib/x86_64-linux-musl/libc.so /lib/libc.musl-x86_64.so.1
 
 RUN useradd -m -u 1000 user
 USER user
