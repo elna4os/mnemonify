@@ -11,6 +11,8 @@ short_description: Kanji Mnemonic Generator
 
 ### Generate kanji mnemonics with fine-tuned Phi-3-Mini-4K-Instruct
 
+You can try it on [HF Spaces](https://huggingface.co/spaces/elna4os/mnemonify) (**Caution**! Model has been deployed on free-tier instance (2 vCPU), so the inference is painfully slow 🙂)
+
 ---
 
 <ins>Requirements</ins>:
@@ -48,5 +50,4 @@ _Fallback mode_ - when the kanji is not found in WaniKani subjects, the app uses
 
 <ins>To do</ins>:
 
-- Fix deployment to HF Spaces (llama-cpp-python build timeout)
 - Find a reliable and open-source way to decompose kanji into radicals (unfortunately, WaniKani license doesn't allow to publicly share their radicals data). KRAD decomposition is too atomic which apparently is not really good for mnemonics.
