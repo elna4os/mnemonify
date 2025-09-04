@@ -50,5 +50,5 @@ Remember that "radical" is a very loosely defined term in Japanese language, so 
 <ins>To do</ins>:
 
 - Find a reliable and open-source way to decompose kanji into radicals (unfortunately, WaniKani license doesn't allow to publicly share their decompositions with according meanings). KRAD decomposition is too atomic which apparently is not really good for mnemonics and often not consistent with WaniKani mnemonics. This strongly affects final user experience, because current mnemonics are generated without references to compounding radicals and their meanings
-- I didn't experimented much with hyperparameters, prompt templates and so on, so there is definitely room for improvement
+- I didn't experiment much with hyperparameters, prompt templates and so on, so there is definitely room for improvement
 - Fine-tune the model to generate mnemonics for vocabulary (sequence of 2 or more kanji characters). Luckily, this one could be done very easily, because the kanji meaning is not a secret
